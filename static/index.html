@@ -1,15 +1,16 @@
 <section>
     <div>
-        <label for="alpha">Alphabet: </label>
-        <input type="text" id="alpha" name="alpha" onchange="ciph.alphaUpdate()">
+        <label for="alpha" class="alpha">Alphabet: </label>
+        <input type="text" id="alpha" name="alpha" onchange="ciph.alphaUpdate()" class="alpha">
+        
         <label for="actionSelect"> Action: </label>
         <select id="actionSelect" name="actionSelect" onchange="ciph.actionUpdate()">
             <option value="encrypt">encrypt</option>
             <option value="decrypt">decrypt</option>
         </select>
 
-        <label for="key">Key: </label>
-        <input type="text" name="key" id="key" onchange="ciph.keyUpdate()">
+        <label for="key" class="key">Key: </label>
+        <input type="text" name="key" id="key" onchange="ciph.keyUpdate()" class="key">
     </div>
     <div>
         <label for="text" id="textLabel"></label>
@@ -21,5 +22,301 @@
 </section>
 <hr>
 <section>
-    <p>Explanation</p>
+    <table>
+        <tr>
+            <th colspan="2">Definition</th>
+        </tr>
+        <tr class="plain">
+            <td><math><mi>x</mi></math></td>
+            <td>Plaintext</td>
+        </tr>
+        <tr class="cipher">
+            <td><math><mi>y</mi></math></td>
+            <td>Ciphertext</td>
+        </tr>
+        <tr class="alpha">
+            <td><math><mi>&alpha;</mi></math></td>
+            <td>alphabet</td>
+        </tr>
+        <tr class="key">
+            <td><math><mi>k</mi></math></td>
+            <td>key</td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>len</mi>
+                <mo>(</mo>
+                <mi class="alpha">&alpha;</mi>
+                <mo>)</mo>
+            </math></td>
+            <td>length of <span class="alpha">alphabet</span></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">x</mi>
+                <mo>)</mo>
+            </math></td>
+            <td>Encryption</td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>d</mi>
+                <mo>(</mo>
+                <mi class="cipher">y</mi>
+                <mo>)</mo>
+            </math></td>
+            <td>Decryption</td>
+        </tr>
+        <tr>
+            <td colspan="2"><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">x</mi>
+                <mo>)</mo>
+                <mo>&equals;</mo>
+                <mi class="cipher">y</mi>
+                <mo>&Congruent;</mo>
+                <mi class="plain">x</mi>
+                <mo>&plus;</mo>
+                <mi class="key">k</mi>
+                <mo>mod</mo>
+                <mi>len</mi>
+                <mo>(</mo>
+                <mi class="alpha">&alpha;</mi>
+                <mo>)</mo>
+            </math></td>
+        </tr>
+        <tr>
+            <td colspan="2"><math>
+                <mi>d</mi>
+                <mo>(</mo>
+                <mi class="cipher">y</mi>
+                <mo>)</mo>
+                <mo>&equals;</mo>
+                <mi class="plain">x</mi>
+                <mo>&Congruent;</mo>
+                <mi class="cipher">y</mi>
+                <mo>&minus;</mo>
+                <mi class="key">k</mi>
+                <mo>mod</mo>
+                <mi>len</mi>
+                <mo>(</mo>
+                <mi class="alpha">&alpha;</mi>
+                <mo>)</mo>
+            </math></td>
+        </tr>
+    </table>
 </section>
+<hr>
+<section>
+    <table>
+        <tr>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <th>Given:</th>
+        </tr>
+        <tr>
+            <td><math>
+                <mi class="plain">x</mi>
+                <mo>&equals;</mo>
+                <mi class="plain">hello (7,4,11,11,14)</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi class="alpha">&alpha;</mi>
+                <mo>&equals;</mo>
+                <mi class="alpha">abcdefghijklmnopqrstuvwxyz</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi class="key">k</mi>
+                <mo>&equals;</mo>
+                <mi class="key">3</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>len</mi>
+                <mo>(</mo>
+                <mi class="alpha">&alpha;</mi>
+                <mo>)</mo>
+                <mo>&equals;</mo>
+                <mn>26</mn>
+            </math></td>
+        </tr>
+        <tr>
+            <th>Encryption</th>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">7"h"</mi>
+                <mo>)</mo>
+                <mo>&Congruent;</mo>
+                <mi class="plain">7"h"</mi>
+                <mo>&plus;</mo>
+                <mi class="key">3</mi>
+                <mo>mod</mo>
+                <mn>26</mn>
+                <mo>&equals;</mo>
+                <mi class="cipher">10"k"</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">4"e"</mi>
+                <mo>)</mo>
+                <mo>&Congruent;</mo>
+                <mi class="plain">4"e"</mi>
+                <mo>&plus;</mo>
+                <mi class="key">3</mi>
+                <mo>mod</mo>
+                <mn>26</mn>
+                <mo>&equals;</mo>
+                <mi class="cipher">7"h"</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">11"l"</mi>
+                <mo>)</mo>
+                <mo>&Congruent;</mo>
+                <mi class="plain">11"l"</mi>
+                <mo>&plus;</mo>
+                <mi class="key">3</mi>
+                <mo>mod</mo>
+                <mn>26</mn>
+                <mo>&equals;</mo>
+                <mi class="cipher">14"o"</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">11"l"</mi>
+                <mo>)</mo>
+                <mo>&Congruent;</mo>
+                <mi class="plain">11"l"</mi>
+                <mo>&plus;</mo>
+                <mi class="key">3</mi>
+                <mo>mod</mo>
+                <mn>26</mn>
+                <mo>&equals;</mo>
+                <mi class="cipher">14"o"</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi>e</mi>
+                <mo>(</mo>
+                <mi class="plain">14"o"</mi>
+                <mo>)</mo>
+                <mo>&Congruent;</mo>
+                <mi class="plain">14"o"</mi>
+                <mo>&plus;</mo>
+                <mi class="key">3</mi>
+                <mo>mod</mo>
+                <mn>26</mn>
+                <mo>&equals;</mo>
+                <mi class="cipher">17"r"</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <td><math>
+                <mi class="cipher">y</mi>
+                <mo>&equals;</mo>
+                <mi class="cipher">khoor (10,7,14,14,17)</mi>
+            </math></td>
+        </tr>
+        <tr>
+            <th>Decryption</th>
+        </tr>
+        <tr><td><math>
+            <mi>d</mi>
+            <mo>(</mo>
+            <mi class="cipher">10"k"</mi>
+            <mo>)</mo>
+            <mo>&Congruent;</mo>
+            <mi class="cipher">10"k"</mi>
+            <mo>&minus;</mo>
+            <mi class="key">3</mi>
+            <mo>mod</mo>
+            <mn>26</mn>
+            <mo>&equals;</mo>
+            <mi class="plain">7"h"</mi>
+        </math></td></tr>
+        <tr><td><math>
+            <mi>d</mi>
+            <mo>(</mo>
+            <mi class="cipher">7"h"</mi>
+            <mo>)</mo>
+            <mo>&Congruent;</mo>
+            <mi class="cipher">7"h"</mi>
+            <mo>&minus;</mo>
+            <mi class="key">3</mi>
+            <mo>mod</mo>
+            <mn>26</mn>
+            <mo>&equals;</mo>
+            <mi class="plain">4"e"</mi>
+        </math></td></tr>
+        <tr><td><math>
+            <mi>d</mi>
+            <mo>(</mo>
+            <mi class="cipher">14"o"</mi>
+            <mo>)</mo>
+            <mo>&Congruent;</mo>
+            <mi class="cipher">14"o"</mi>
+            <mo>&minus;</mo>
+            <mi class="key">3</mi>
+            <mo>mod</mo>
+            <mn>26</mn>
+            <mo>&equals;</mo>
+            <mi class="plain">11"l"</mi>
+        </math></td></tr>
+        <tr><td><math>
+            <mi>d</mi>
+            <mo>(</mo>
+            <mi class="cipher">14"o"</mi>
+            <mo>)</mo>
+            <mo>&Congruent;</mo>
+            <mi class="cipher">14"o"</mi>
+            <mo>&minus;</mo>
+            <mi class="key">3</mi>
+            <mo>mod</mo>
+            <mn>26</mn>
+            <mo>&equals;</mo>
+            <mi class="plain">11"l"</mi>
+        </math></td></tr>
+        <tr><td><math>
+            <mi>d</mi>
+            <mo>(</mo>
+            <mi class="cipher">17"r"</mi>
+            <mo>)</mo>
+            <mo>&Congruent;</mo>
+            <mi class="cipher">17"r"</mi>
+            <mo>&minus;</mo>
+            <mi class="key">3</mi>
+            <mo>mod</mo>
+            <mn>26</mn>
+            <mo>&equals;</mo>
+            <mi class="plain">14"o"</mi>
+        </math></td></tr>
+        <tr><td><math>
+            <mi class="plain">x</mi>
+            <mo>&equals;</mo>
+            <mi class="plain">hello (7,4,11,11,14)</mi>
+        </math></td></tr>
+    </table>
+</section>
+<hr>

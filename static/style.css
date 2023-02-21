@@ -3,6 +3,26 @@ div {
 }
 
 #text {
-    width: 1000px;
+    width: 100%;
     height: 50px;
+}
+
+#key {
+    width: 50px;
+}
+
+.plain {
+    color: var(--green);
+}
+
+.cipher {
+    color: var(--red);
+}
+
+.key {
+    color: var(--blue);
+}
+
+.alpha {
+    color: var(--yellow);
 }

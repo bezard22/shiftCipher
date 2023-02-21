@@ -19,26 +19,42 @@ class cipher {
 
     // update key and elements based on alphabet change
     alphaUpdate() {
+        d3.select("#output p")
+            .remove()
         this.alpha = d3.select("#alpha").property("value");
     }
 
     // update elements based on action selected
     actionUpdate() {
+        d3.select("#output p")
+            .remove()
         this.action = d3.select("#actionSelect").property("value");
         if (this.action == "encrypt") {
             d3.select("#textLabel")
+                .attr("class", null)
+                .classed("plain", true)
                 .text("PLaintext: ");
             d3.select("#action")
                 .text("Encrypt");
+            d3.select("#text")
+                .attr("class", null)
+                .classed("plain", true);
         } else if (this.action == "decrypt") {
             d3.select("#textLabel")
+                .attr("class", null)
+                .classed("cipher", true)
                 .text("Ciphertext: ");
             d3.select("#action")
                 .text("Decrypt");
+            d3.select("#text")
+                .attr("class", null)
+                .classed("cipher", true);
         }
     }
 
     keyUpdate() {
+        d3.select("#output p")
+            .remove()
         const curVal = parseInt(d3.select("#key").property("value"));
         if (isNaN(curVal)) {
             d3.select("#key").property("value", this.preKey);
@@ -68,6 +84,7 @@ class cipher {
             .remove()
         d3.select("#output")
             .append("p")
+            .classed((this.action == "encrypt" ? "cipher" : "plain"), true)
             .text(`${this.action == "encrypt" ? "Cipher" : "Plain"}text: ${outText}`)
     }
 }
